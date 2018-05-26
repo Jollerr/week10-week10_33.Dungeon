@@ -32,6 +32,9 @@ public class Dungeon {
         vampireList = new ArrayList<Vampire>();
     }
     
+    /**
+     * The method which starts the game
+     */
     public void run() {
         this.generateVampires(vampires);
         while (true) {
@@ -55,7 +58,12 @@ public class Dungeon {
         }
         
     }
-    
+    /**
+     * Prints map of the game
+     *  @ for the player
+     *  v for the vampires
+     *  . for empty coordinates
+     */
     public void printMap() {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < length; i++) {
@@ -70,7 +78,9 @@ public class Dungeon {
         }
     }
     
-    
+    /**
+     * Prints the coordinates of Movables in the game
+     */
     public void printStats() {
         System.out.println(player.getMovesLeft());
         System.out.println("\n" + "@ " + player.getXY().get(0)+ " " + player.getXY().get(1));
@@ -79,11 +89,24 @@ public class Dungeon {
         }
     }
     
+    
+    /**
+     * Whether the player is at that location
+     * @param x x-coordinate that is checked
+     * @param y y-coordinate that is checked
+     * @return boolean
+     */
     public boolean isPlayerHere(int x, int y) {
         if (this.player.getXY().get(0) == x && this.player.getXY().get(1) == y) return true;
         return false;
     }
     
+    /**
+     * Whether a vampire is at that location
+     * @param x x-coordinate that is checked
+     * @param y y-coordinate that is checked
+     * @return  boolean
+     */
     public boolean isVampireHere(int x, int y) {
         for (Vampire vampire : vampireList) {
             if(vampire.getXY().get(0) == x && vampire.getXY().get(1) == y) return true;
@@ -91,6 +114,13 @@ public class Dungeon {
         return false;
     }
     
+    /**
+     * Whether the Movable is out of bonds if he moves in the direction which given in parameters
+     * @param moveable Movable that is checked
+     * @param x x-coordinate that Movable moves
+     * @param y y-coordinate that Movable moves
+     * @return boolean
+     */
     public boolean isOutOfBounds(Movable moveable, int x, int y) {
         Movable movableCheck = new Vampire(moveable.getXY().get(0) + x, moveable.getXY().get(1) + y);
         if (movableCheck.getXY().get(0) >= 0 && movableCheck.getXY().get(1) >= 0) {
@@ -101,7 +131,10 @@ public class Dungeon {
         return true;
     }
     
-    
+    /**
+     * Moves the player according to the input list
+     * @param list list of inputs that is given by the player
+     */
     public void movePlayer(List<String> list) {
         for (String direction : list) {
             
@@ -138,10 +171,22 @@ public class Dungeon {
         }
     }
     
+    
+    /**
+     * Asks for the moves in which direction the player will move
+     * @param reader 
+     * @return String
+     */
     public String askForDirections(Scanner reader) {
         return reader.nextLine();
     }
     
+    
+    /**
+     * Translate string into an ArrayList
+     * @param moves String of characters that player inputs
+     * @return ArrayList<String>
+     */
     public List<String> saveMovesAndGiveMoveList (String moves) {
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < moves.length(); i++) {
@@ -152,7 +197,10 @@ public class Dungeon {
     
     
 
-    
+    /**
+     * Generate vampires in the game
+     * @param amount Amount of vampires will be spawned
+     */
     public void generateVampires(int amount) {
         for (int i = 0; i < amount; i++) {
             
@@ -166,6 +214,12 @@ public class Dungeon {
         }
     }
     
+    /**
+     * Whether the location is occupied
+     * @param x x-coordinate that is checked
+     * @param y y-coordinate that is checked
+     * @return boolean
+     */
     public boolean isOccupied(int x, int y) {
         if (x == player.getXY().get(0) && y == player.getXY().get(1)) {
             return true;
@@ -180,6 +234,10 @@ public class Dungeon {
         return false;     
     }
     
+    /**
+     * Whether the player is on the same location with vampire
+     * @return boolean
+     */
     public boolean hasPlayerFoundVampire() {
         for (Vampire vampire : vampireList) {    
             if (vampire.getXY().get(0) == player.getXY().get(0) && vampire.getXY().get(1) == player.getXY().get(1)) {
@@ -189,6 +247,10 @@ public class Dungeon {
         return false;
     }
     
+    /**
+     * Removes the vampire from the game if the player is on the same location as the vampire
+     * @return Integer
+     */
     public int killVampire() {
         for (Vampire vampire : vampireList) {    
             if (vampire.getXY().get(0) == player.getXY().get(0) && vampire.getXY().get(1) == player.getXY().get(1)) {
@@ -199,6 +261,10 @@ public class Dungeon {
         return -1;
     }
     
+    /**
+     * Moves randomly the vampires
+     * @param howManyTimes How many times will the vampires move
+     */
     public void moveVampires(int howManyTimes) {
 
         for (Vampire vampire : vampireList) {
