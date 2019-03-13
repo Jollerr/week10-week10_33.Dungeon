@@ -4,49 +4,49 @@
  * and open the template in the editor.
  */
 package dungeon;
-import java.util.*;
 
 /**
- *
  * @author Kristjan
  */
 public abstract class Movable {
 
-    List<Integer> coordinates;
-    
-    public Movable() {
-        this.coordinates = new ArrayList<Integer>();
-        this.coordinates.add(0);
-        this.coordinates.add(0);
+    int x;
+    int y;
+
+    public Movable(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
-    
+
     public void goUp() {
-        int old = this.coordinates.get(1);
-        this.coordinates.set(1, old - 1);
+        y -= 1;
     }
-    
+
     public void goDown() {
-        int old = this.coordinates.get(1);
-        this.coordinates.set(1, old + 1);
+        y += 1;
     }
-    
+
     public void goRight() {
-        int old = this.coordinates.get(0);
-        this.coordinates.set(0, old + 1);
+        x += 1;
     }
-    
+
     public void goLeft() {
-        int old = this.coordinates.get(0);
-        this.coordinates.set(0, old - 1);
+        x -= 1;
     }
-    
-    public void setXY(int x, int y) {
-        this.coordinates.clear();
-        this.coordinates.add(x);
-        this.coordinates.add(y);
+
+    public int getX() {
+        return x;
     }
-     
-    public List<Integer> getXY() {
-        return coordinates;
-    } 
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

@@ -11,19 +11,19 @@ package dungeon;
  */
 public class Player extends Movable {
     
-    private int moves;
+    private int movesLeft;
     
     public Player(int moves) {
-        super();
-        this.moves = moves;
+        super(0,0);
+        this.movesLeft = moves;
     }
     
     public int getMovesLeft() {
-        return moves;
+        return movesLeft;
     }
     
-    public void reduceMoves() {
-        moves--;
+    public void reduceMovesLeftByOne() {
+        movesLeft -= 1;
     }
     
 }

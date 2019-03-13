@@ -7,12 +7,12 @@ package dungeon;
 
 
 /**
- *
  * @author Kristjan
  */
 public class Vampire extends Movable {
-    
-    public Vampire(int x, int y){
-        super.setXY(x, y);    
-    } 
+
+
+    public Vampire(int x, int y) {
+        super(x, y);
+    }
 }
